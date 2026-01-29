@@ -1,0 +1,19 @@
+<app-poke-search (emitSearch)="search($event)"></app-poke-search>
+<section class="listagem">
+  <ng-template ngFor let-pokemon [ngForOf]="visiblePokemons">
+    <a [routerLink]="['details', pokemon.details.id]" class="pokemon fadeIn" *ngIf="pokemon.details">
+      <section class="pokemon__status">
+        <h2>{{pokemon.name}}</h2>
+        <ul>
+          <li *ngFor="let value of pokemon.details.types">
+            {{value.type.name}}
+          </li>
+        </ul>
+      </section>
+      <section class="pokemon__image">
+        <img [src]="pokemon.details.sprites.other.dream_world.front_default" alt="pokemon.name">
+      </section>
+    </a>
+  </ng-template>
+  <div #anchor class="observer-anchor"></div>
+</section>

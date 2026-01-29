@@ -1,0 +1,32 @@
+<app-poke-head></app-poke-head>
+
+<main>
+  <ng-container *ngIf="pokemon &&  name && !apiError">
+    <section class="pokemon__names">
+      <h1 class="slideInRight">{{pokemon.name}}</h1>
+      <h2 class="slideInLeft">{{name.names[0].name}}</h2>
+    </section>
+
+    <section class="pokemon__status">
+      <img [src]="pokemon.sprites.other.dream_world.front_default" [alt]="pokemon.name" class="slideInDown">
+
+      <article class="pokemon__status__statistics fadeIn">
+        <section>
+          <h3>Estatísticas</h3>
+          <ol>
+            <li *ngFor="let value of pokemon.stats">
+              {{value.stat.name}}
+              <strong>
+                {{value.base_stat}}
+              </strong>
+            </li>
+          </ol>
+        </section>
+
+        <a [routerLink]="['']" class="btn btn__secondary">Voltar</a>
+      </article>
+    </section>
+  </ng-container>
+
+  <img src="/assets/error.png" alt="pokemon details not found" *ngIf="apiError">
+</main>
